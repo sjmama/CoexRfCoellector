@@ -244,6 +244,7 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
                 printRedDot(resultPosition[0], resultPosition[1])
                 if (exIndoorLocalization.rfCng){
                     printBlueDot(exIndoorLocalization.coorPdr[0], exIndoorLocalization.coorPdr[1])
+                    Log.d("tttest_blue", "${exIndoorLocalization.coorPdr[0]}, ${exIndoorLocalization.coorPdr[1]}")
                     exIndoorLocalization.rfMkCng()
                 }
             }
@@ -274,10 +275,10 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
                 }
                 webView.loadUrl("javascript:setTestbed('coex', floor='${cur_floor}', mode='history')")
 
-                val inputPosXL = intent.getStringExtra("input_pos_x")?.toFloat()
-                val inputPosYL = intent.getStringExtra("input_pos_y")?.toFloat()
+                val inputPosXL = intent.getStringExtra("inputPosX")?.toFloat()
+                val inputPosYL = intent.getStringExtra("inputPosY")?.toFloat()
                 val inputPosZL = intent.getStringExtra("cur_floor")
-                val inputAngleL = intent.getStringExtra("cur_angle")?.toInt()
+                val inputAngleL = intent.getStringExtra("curAngle")?.toInt()
                 if (inputPosXL != null) {
                     inputPosX = inputPosXL.toDouble()
                 }
@@ -330,7 +331,7 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
     fun printArrowInWebView(gyro_from_map: Float) {
         mHandler.postDelayed(kotlinx.coroutines.Runnable {
             webView.loadUrl("javascript:rotateArrow($gyro_from_map)")
-            webView.loadUrl("javascript:arrow_rotation($gyro_from_map)")
+            //webView.loadUrl("javascript:arrow_rotation($gyro_from_map)")
         }, 100)
     }
 

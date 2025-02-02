@@ -13,16 +13,20 @@ const testbedConfigs = {
         small_dot: {
             width: '10px',
             left: '-5px', top: '-6px',
-            constant_top: {a : -1, b : 3413.01896, c : 0.65412},
-            constant_left: {a : 1, b : 202.3702, c : 0.65550},
+//            constant_top: {a : -1, b : 3413.01896, c : 0.65412},
+//            constant_left: {a : 1, b : 202.3702, c : 0.65550},
+            constant_top: {a : -1, b : 2230, c : 0.655984},
+            constant_left: {a : 0.653761, b : 175, c : 1},
         },
         big_arrow: {
             width: '300px',
         },
         big_dot: {
             width: '300px',
-            constant_top: {a : -1, b : 3181.01896, c : 0.65412},
-            constant_left: {a : 1, b : -27.6298, c : 0.65550},
+//            constant_top: {a : -1, b : 3181.01896, c : 0.65412},
+//            constant_left: {a : 1, b : -27.6298, c : 0.65550},
+            constant_top: {a : -1, b : 3413.01896, c : 0.65412},
+            constant_left: {a : 1, b : 202.3702, c : 0.65550},
         },
         X: {
             width: '12px',
@@ -607,9 +611,12 @@ window.onload = function () {
 // 점 찍기 함수
 function plotPoint(x, y) {
     const dot = document.createElement('div');
-
-    dot.style.left = `${(4154/6354)*y+175}px`;
-    dot.style.top = `${2230-x*(2006/3058)}px`;
+    const {a: aTop, b: bTop, c: cTop} = config.big_dot.constant_top;
+    const {a: aLeft, b: bLeft, c: cLeft} = config.big_dot.constant_left;
+    dot.style.top = `${(aTop * x + bTop) * cTop}px`;
+    dot.style.left = `${(aLeft * y + bLeft) * cLeft}px`;
+//    dot.style.left = `${(0.653761*y+175)*1}px`;
+//    dot.style.top = `${(-1*x+2230)*655984}px`;
     dot.style.position = 'absolute';
 
     dot.style.width = '10px'; // 점의 크기
@@ -623,10 +630,13 @@ function plotPointRed(x, y) {
     document.querySelectorAll('.dot2').forEach(function(dot) {
         dot.remove();
     });
+    const {a: aTop, b: bTop, c: cTop} = config.big_dot.constant_top;
+    const {a: aLeft, b: bLeft, c: cLeft} = config.big_dot.constant_left;
     const dot = document.createElement('div');
-
-    dot.style.left = `${(4154/6354)*y+175}px`;
-    dot.style.top = `${2230-x*(2006/3058)}px`;
+    dot.style.top = `${(aTop * x + bTop) * cTop}px`;
+    dot.style.left = `${(aLeft * y + bLeft) * cLeft}px`;
+//    dot.style.left = `${(4154/6354)*y+175}px`;
+//    dot.style.top = `${2230-x*(2006/3058)}px`;
     dot.style.position = 'absolute';
 
     dot.style.width = '10px'; // 점의 크기

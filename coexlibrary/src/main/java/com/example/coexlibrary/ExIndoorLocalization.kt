@@ -142,7 +142,7 @@ class ExIndoorLocalization(context: Context) {
                         coorPdr = arrayListOf(coorPdr[0] - (sin(Math.toRadians(pdrAngle.toDouble())) * stepLength*10),
                             coorPdr[1] + (cos(Math.toRadians(pdrAngle.toDouble())) * stepLength*10), coorPdr[2])
                         rfLocalization.coorPdr = coorPdr
-                        Log.d("asdjasijd", rfResult["rfCoor"].toString())
+                        Log.d("tttest_pdr", "${rfLocalization.coorPdr[0]}, ${rfLocalization.coorPdr[1]}")
 
                         coor = if(199.0 < rfStatusCode && rfStatusCode < 300.0){
                             rfResult["rfCoor"] as ArrayList<Double>

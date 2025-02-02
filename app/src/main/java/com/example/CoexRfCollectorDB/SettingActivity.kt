@@ -101,7 +101,7 @@ class SettingActivity  : AppCompatActivity(), SensorEventListener {
             intent.putExtra("inputPosY", iy)
             intent.putExtra("curAngle", iA)
 
-            Log.d("asdjasijd233332444444",  iA.toString())
+            Log.d("tttest2",  "$ix, $iy")
             startActivity(intent)
         }
 
